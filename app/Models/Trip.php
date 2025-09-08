@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Trip extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'company_id',
+        'driver_id',
+        'vehicle_id',
+        'name',
+        'description',
+        'origin',
+        'destination',
+        'start_time',
+        'end_time',
+        'status',
+    ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function driver()
+    {
+        return $this->belongsTo(Driver::class);
+    }
+
+    public function vehicle()
+    {
+        return $this->belongsTo(Vehicle::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->whereIn('status', ['scheduled', 'ongoing']);
+    }
+
+    public function scopeOverlapping($query, string $startTime, string $endTime)
+    {
+        return $query
+            ->where('start_time', '<', $endTime)
+            ->where('end_time', '>', $startTime);
+    }
+}
