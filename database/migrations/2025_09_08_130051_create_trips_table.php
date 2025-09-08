@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('destination');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->string('status')->default('scheduled');
+            $table->enum('status', ['scheduled', 'started', 'completed', 'cancelled'])->default('scheduled');
             $table->timestamps();
         });
     }
