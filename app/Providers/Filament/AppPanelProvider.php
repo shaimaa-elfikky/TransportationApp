@@ -28,20 +28,9 @@ class AppPanelProvider extends PanelProvider
             ->path('app')
             ->authGuard('web')
             ->login()
-            ->colors([
-                'danger' => '#CC0000',
-                'gray' => '#A9A9A9',
-                'info' => '#A7C7E7',
-                'primary' => '#216CB9',
-                'secondary' => '#FAF461',
-                'success' => '#50C878',
-                'warning' => '#FFAC1C',
-            ])
             ->brandName('TransportationApp')
             ->brandLogo(asset('images/logo.png'))
             ->favicon(asset('images/favicon.png'))
-            ->font('Changa', provider: GoogleFontProvider::class)
-            // ->viteTheme('resources/css/filament/app/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -66,8 +55,7 @@ class AppPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            //->viteTheme('resources/css/filament/app/theme.css')
-            ;
+            ->viteTheme('resources/css/app.css');
 
     }
 }

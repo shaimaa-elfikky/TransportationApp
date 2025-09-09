@@ -1,2 +1,744 @@
-@source '../../../../app/Filament';
-@source '../../../../resources/views/filament';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Transportation Management Theme Variables */
+:root {
+    /* Primary Transportation Blue */
+    --primary-50: 239 246 255;
+    --primary-100: 219 234 254;
+    --primary-200: 191 219 254;
+    --primary-300: 147 197 253;
+    --primary-400: 96 165 250;
+    --primary-500: 59 130 246;
+    --primary-600: 37 99 235;
+    --primary-700: 29 78 216;
+    --primary-800: 30 64 175;
+    --primary-900: 30 58 138;
+    --primary-950: 23 37 84;
+    
+    /* Secondary Logistics Orange */
+    --secondary-50: 255 247 237;
+    --secondary-100: 255 237 213;
+    --secondary-200: 254 215 170;
+    --secondary-300: 253 186 116;
+    --secondary-400: 251 146 60;
+    --secondary-500: 249 115 22;
+    --secondary-600: 234 88 12;
+    --secondary-700: 194 65 12;
+    --secondary-800: 154 52 18;
+    --secondary-900: 124 45 18;
+    --secondary-950: 67 20 7;
+    
+    /* Success Green */
+    --success-50: 240 253 244;
+    --success-100: 220 252 231;
+    --success-200: 187 247 208;
+    --success-300: 134 239 172;
+    --success-400: 74 222 128;
+    --success-500: 34 197 94;
+    --success-600: 22 163 74;
+    --success-700: 21 128 61;
+    --success-800: 22 101 52;
+    --success-900: 20 83 45;
+    --success-950: 5 46 22;
+    
+    /* Warning Yellow */
+    --warning-50: 254 252 232;
+    --warning-100: 254 243 199;
+    --warning-200: 253 230 138;
+    --warning-300: 252 211 77;
+    --warning-400: 251 191 36;
+    --warning-500: 245 158 11;
+    --warning-600: 217 119 6;
+    --warning-700: 180 83 9;
+    --warning-800: 146 64 14;
+    --warning-900: 120 53 15;
+    --warning-950: 69 26 3;
+    
+    /* Danger Red */
+    --danger-50: 254 242 242;
+    --danger-100: 254 226 226;
+    --danger-200: 254 202 202;
+    --danger-300: 252 165 165;
+    --danger-400: 248 113 113;
+    --danger-500: 239 68 68;
+    --danger-600: 220 38 38;
+    --danger-700: 185 28 28;
+    --danger-800: 153 27 27;
+    --danger-900: 127 29 29;
+    --danger-950: 69 10 10;
+}
+
+/* Base Styles */
+* {
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Header & Navigation */
+.fi-header {
+    background: linear-gradient(135deg, rgb(var(--primary-400)) 0%, rgb(var(--primary-500)) 100%);
+    border-bottom: 1px solid rgb(var(--primary-200));
+    box-shadow: 0 2px 4px -1px rgba(14, 165, 233, 0.1);
+}
+
+.fi-header .fi-header-heading {
+    color: white;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.fi-header .fi-header-actions {
+    color: white;
+}
+
+/* Sidebar */
+.fi-sidebar {
+    background: linear-gradient(180deg, rgb(var(--primary-50)) 0%, rgb(var(--primary-100)) 100%);
+    border-right: 1px solid rgb(var(--primary-200));
+    box-shadow: 2px 0 4px rgba(59, 130, 246, 0.05);
+}
+
+.fi-sidebar-nav-item {
+    border-radius: 8px;
+    margin: 2px 8px;
+    transition: all 0.2s ease;
+}
+
+.fi-sidebar-nav-item:hover {
+    background-color: rgb(var(--primary-100));
+    transform: translateX(2px);
+}
+
+.fi-sidebar-nav-item-active {
+    background: linear-gradient(135deg, rgb(var(--primary-500)) 0%, rgb(var(--primary-600)) 100%);
+    color: white;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.fi-sidebar-nav-item-active:hover {
+    background: linear-gradient(135deg, rgb(var(--primary-600)) 0%, rgb(var(--primary-700)) 100%);
+    transform: translateX(0);
+}
+
+/* Main Content Area */
+.fi-main {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    min-height: 100vh;
+}
+
+/* Cards & Panels */
+.fi-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(var(--primary-100));
+}
+
+.fi-section-header {
+    background: linear-gradient(135deg, rgb(var(--primary-50)) 0%, rgb(var(--primary-100)) 100%);
+    border-bottom: 1px solid rgb(var(--primary-200));
+    border-radius: 12px 12px 0 0;
+    padding: 1rem 1.5rem;
+}
+
+.fi-section-header-heading {
+    color: rgb(var(--primary-900));
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Buttons */
+.fi-btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fi-btn-primary {
+    background: linear-gradient(135deg, rgb(var(--primary-500)) 0%, rgb(var(--primary-600)) 100%);
+    color: white;
+    border: 1px solid rgb(var(--primary-600));
+}
+
+.fi-btn-primary:hover {
+    background: linear-gradient(135deg, rgb(var(--primary-600)) 0%, rgb(var(--primary-700)) 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3);
+    color: white;
+}
+
+.fi-btn-secondary {
+    background: linear-gradient(135deg, rgb(var(--secondary-500)) 0%, rgb(var(--secondary-600)) 100%);
+    color: white;
+    border: 1px solid rgb(var(--secondary-600));
+}
+
+.fi-btn-secondary:hover {
+    background: linear-gradient(135deg, rgb(var(--secondary-600)) 0%, rgb(var(--secondary-700)) 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(249, 115, 22, 0.3);
+    color: white;
+}
+
+/* Filament specific button classes */
+.fi-btn-outline {
+    background: white;
+    color: rgb(var(--primary-600));
+    border: 1px solid rgb(var(--primary-300));
+}
+
+.fi-btn-outline:hover {
+    background: rgb(var(--primary-50));
+    color: rgb(var(--primary-700));
+    border-color: rgb(var(--primary-400));
+}
+
+.fi-btn-ghost {
+    background: transparent;
+    color: rgb(var(--primary-600));
+    border: 1px solid transparent;
+}
+
+.fi-btn-ghost:hover {
+    background: rgb(var(--primary-50));
+    color: rgb(var(--primary-700));
+}
+
+/* Filament Action Button */
+.fi-ac-action {
+    background: linear-gradient(135deg, rgb(var(--primary-500)) 0%, rgb(var(--primary-600)) 100%) !important;
+    color: white !important;
+    border: 1px solid rgb(var(--primary-600)) !important;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+}
+
+.fi-ac-action:hover {
+    background: linear-gradient(135deg, rgb(var(--primary-600)) 0%, rgb(var(--primary-700)) 100%) !important;
+    color: white !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3);
+}
+
+/* Filament Primary Action Button */
+.fi-ac-primary {
+    background: linear-gradient(135deg, rgb(var(--primary-500)) 0%, rgb(var(--primary-600)) 100%) !important;
+    color: white !important;
+    border: 1px solid rgb(var(--primary-600)) !important;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+}
+
+.fi-ac-primary:hover {
+    background: linear-gradient(135deg, rgb(var(--primary-600)) 0%, rgb(var(--primary-700)) 100%) !important;
+    color: white !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3);
+}
+
+/* Filament Secondary Action Button */
+.fi-ac-secondary {
+    background: white !important;
+    color: rgb(var(--primary-600)) !important;
+    border: 1px solid rgb(var(--primary-300)) !important;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+}
+
+.fi-ac-secondary:hover {
+    background: rgb(var(--primary-50)) !important;
+    color: rgb(var(--primary-700)) !important;
+    border-color: rgb(var(--primary-400)) !important;
+}
+
+/* Filament Outline Action Button */
+.fi-ac-outline {
+    background: white !important;
+    color: rgb(var(--primary-600)) !important;
+    border: 1px solid rgb(var(--primary-300)) !important;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+}
+
+.fi-ac-outline:hover {
+    background: rgb(var(--primary-50)) !important;
+    color: rgb(var(--primary-700)) !important;
+    border-color: rgb(var(--primary-400)) !important;
+}
+
+/* Filament Header Actions */
+.fi-header-actions .fi-btn {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+}
+
+.fi-header-actions .fi-btn:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+/* General Filament Button Overrides */
+.fi-btn {
+    background: linear-gradient(135deg, rgb(var(--primary-500)) 0%, rgb(var(--primary-600)) 100%) !important;
+    color: white !important;
+    border: 1px solid rgb(var(--primary-600)) !important;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.fi-btn:hover {
+    background: linear-gradient(135deg, rgb(var(--primary-600)) 0%, rgb(var(--primary-700)) 100%) !important;
+    color: white !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3);
+}
+
+/* Filament Button Variants */
+.fi-btn-outline {
+    background: white !important;
+    color: rgb(var(--primary-600)) !important;
+    border: 1px solid rgb(var(--primary-300)) !important;
+}
+
+.fi-btn-outline:hover {
+    background: rgb(var(--primary-50)) !important;
+    color: rgb(var(--primary-700)) !important;
+    border-color: rgb(var(--primary-400)) !important;
+}
+
+.fi-btn-ghost {
+    background: transparent !important;
+    color: rgb(var(--primary-600)) !important;
+    border: 1px solid transparent !important;
+}
+
+.fi-btn-ghost:hover {
+    background: rgb(var(--primary-50)) !important;
+    color: rgb(var(--primary-700)) !important;
+}
+
+/* Filament Action Classes */
+[class*="fi-ac-"] {
+    background: linear-gradient(135deg, rgb(var(--primary-500)) 0%, rgb(var(--primary-600)) 100%) !important;
+    color: white !important;
+    border: 1px solid rgb(var(--primary-600)) !important;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+}
+
+[class*="fi-ac-"]:hover {
+    background: linear-gradient(135deg, rgb(var(--primary-600)) 0%, rgb(var(--primary-700)) 100%) !important;
+    color: white !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3);
+}
+
+/* Filament Button Overrides - More Specific Selectors */
+button[class*="fi-"],
+a[class*="fi-"],
+[class*="fi-btn"],
+[class*="fi-ac"],
+[class*="fi-header-actions"] button,
+[class*="fi-header-actions"] a,
+.fi-header-actions button,
+.fi-header-actions a {
+    background: linear-gradient(135deg, rgb(var(--primary-500)) 0%, rgb(var(--primary-600)) 100%) !important;
+    color: white !important;
+    border: 1px solid rgb(var(--primary-600)) !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    min-height: 2.5rem !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+button[class*="fi-"]:hover,
+a[class*="fi-"]:hover,
+[class*="fi-btn"]:hover,
+[class*="fi-ac"]:hover,
+[class*="fi-header-actions"] button:hover,
+[class*="fi-header-actions"] a:hover,
+.fi-header-actions button:hover,
+.fi-header-actions a:hover {
+    background: linear-gradient(135deg, rgb(var(--primary-600)) 0%, rgb(var(--primary-700)) 100%) !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3) !important;
+}
+
+/* Specific Filament Button Classes */
+.fi-btn-primary,
+.fi-btn-secondary,
+.fi-btn-success,
+.fi-btn-warning,
+.fi-btn-danger {
+    background: linear-gradient(135deg, rgb(var(--primary-500)) 0%, rgb(var(--primary-600)) 100%) !important;
+    color: white !important;
+    border: 1px solid rgb(var(--primary-600)) !important;
+}
+
+.fi-btn-outline {
+    background: white !important;
+    color: rgb(var(--primary-600)) !important;
+    border: 1px solid rgb(var(--primary-300)) !important;
+}
+
+.fi-btn-outline:hover {
+    background: rgb(var(--primary-50)) !important;
+    color: rgb(var(--primary-700)) !important;
+    border-color: rgb(var(--primary-400)) !important;
+}
+
+/* Force button visibility */
+button, a[role="button"], [role="button"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Ultra-specific Filament button targeting */
+.fi-header-actions > *,
+.fi-header-actions button,
+.fi-header-actions a,
+.fi-header-actions [class*="fi-"],
+.fi-ac-actions button,
+.fi-ac-actions a,
+.fi-ac-actions [class*="fi-"],
+.fi-page-actions button,
+.fi-page-actions a,
+.fi-page-actions [class*="fi-"],
+.fi-form-actions button,
+.fi-form-actions a,
+.fi-form-actions [class*="fi-"],
+.fi-table-actions button,
+.fi-table-actions a,
+.fi-table-actions [class*="fi-"] {
+    background: linear-gradient(135deg, rgb(var(--primary-500)) 0%, rgb(var(--primary-600)) 100%) !important;
+    color: white !important;
+    border: 1px solid rgb(var(--primary-600)) !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    min-height: 2.5rem !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.fi-header-actions > *:hover,
+.fi-header-actions button:hover,
+.fi-header-actions a:hover,
+.fi-header-actions [class*="fi-"]:hover,
+.fi-ac-actions button:hover,
+.fi-ac-actions a:hover,
+.fi-ac-actions [class*="fi-"]:hover,
+.fi-page-actions button:hover,
+.fi-page-actions a:hover,
+.fi-page-actions [class*="fi-"]:hover,
+.fi-form-actions button:hover,
+.fi-form-actions a:hover,
+.fi-form-actions [class*="fi-"]:hover,
+.fi-table-actions button:hover,
+.fi-table-actions a:hover,
+.fi-table-actions [class*="fi-"]:hover {
+    background: linear-gradient(135deg, rgb(var(--primary-600)) 0%, rgb(var(--primary-700)) 100%) !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3) !important;
+}
+
+/* Target any element that looks like a button */
+[class*="fi-"]:is(button, a, [role="button"]) {
+    background: linear-gradient(135deg, rgb(var(--primary-500)) 0%, rgb(var(--primary-600)) 100%) !important;
+    color: white !important;
+    border: 1px solid rgb(var(--primary-600)) !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    min-height: 2.5rem !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+[class*="fi-"]:is(button, a, [role="button"]):hover {
+    background: linear-gradient(135deg, rgb(var(--primary-600)) 0%, rgb(var(--primary-700)) 100%) !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3) !important;
+}
+
+/* Form Elements */
+.fi-input {
+    border: 2px solid rgb(var(--primary-200));
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.fi-input:focus {
+    border-color: rgb(var(--primary-500));
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+.fi-input-error {
+    border-color: rgb(var(--danger-500));
+}
+
+.fi-label {
+    color: rgb(var(--primary-700));
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Tables */
+.fi-ta-table {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(var(--primary-200));
+}
+
+.fi-ta-header {
+    background: linear-gradient(135deg, rgb(var(--primary-400)) 0%, rgb(var(--primary-500)) 100%);
+    color: white;
+    font-weight: 600;
+}
+
+.fi-ta-header-cell {
+    padding: 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fi-ta-body-row {
+    transition: background-color 0.2s ease;
+}
+
+.fi-ta-body-row:hover {
+    background-color: rgb(var(--primary-50));
+}
+
+.fi-ta-body-cell {
+    padding: 1rem;
+    border-bottom: 1px solid rgb(var(--primary-100));
+}
+
+/* Status Badges */
+.fi-badge {
+    border-radius: 6px;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.fi-badge-success {
+    background-color: rgb(var(--success-100));
+    color: rgb(var(--success-800));
+    border: 1px solid rgb(var(--success-200));
+}
+
+.fi-badge-warning {
+    background-color: rgb(var(--warning-100));
+    color: rgb(var(--warning-800));
+    border: 1px solid rgb(var(--warning-200));
+}
+
+.fi-badge-danger {
+    background-color: rgb(var(--danger-100));
+    color: rgb(var(--danger-800));
+    border: 1px solid rgb(var(--danger-200));
+}
+
+.fi-badge-primary {
+    background-color: rgb(var(--primary-100));
+    color: rgb(var(--primary-800));
+    border: 1px solid rgb(var(--primary-200));
+}
+
+/* Transportation-specific Components */
+.transport-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+    border: 1px solid rgb(var(--primary-100));
+    transition: all 0.2s ease;
+}
+
+.transport-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1);
+}
+
+.fleet-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.fleet-status-online {
+    background-color: rgb(var(--success-100));
+    color: rgb(var(--success-800));
+    border: 1px solid rgb(var(--success-200));
+}
+
+.fleet-status-offline {
+    background-color: rgb(var(--danger-100));
+    color: rgb(var(--danger-800));
+    border: 1px solid rgb(var(--danger-200));
+}
+
+.fleet-status-maintenance {
+    background-color: rgb(var(--warning-100));
+    color: rgb(var(--warning-800));
+    border: 1px solid rgb(var(--warning-200));
+}
+
+/* Dashboard Widgets */
+.dashboard-widget {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(var(--primary-100));
+}
+
+.dashboard-widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgb(var(--primary-100));
+}
+
+.dashboard-widget-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: rgb(var(--primary-900));
+    font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-widget-icon {
+    width: 2rem;
+    height: 2rem;
+    color: rgb(var(--primary-500));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .fi-sidebar {
+        box-shadow: none;
+    }
+    
+    .transport-card {
+        padding: 1rem;
+    }
+    
+    .dashboard-widget {
+        padding: 1rem;
+    }
+}
+
+/* Loading States */
+.fi-loading {
+    background: linear-gradient(90deg, rgb(var(--primary-100)) 25%, rgb(var(--primary-200)) 50%, rgb(var(--primary-100)) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

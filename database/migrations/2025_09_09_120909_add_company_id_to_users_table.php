@@ -24,7 +24,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('company_id');
-            $table->dropColumn('role')->default(0)
+            $table->dropColumn('role')->default(0);
         });
     }
 };
