@@ -18,6 +18,15 @@ class TripResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-map';
 
+    public static function getNavigationGroup(): string
+    {
+
+        return __('Trips Mangements');
+    }
+
+    protected static ?int $navigationSort = 1;
+
+
     public static function form(Form $form): Form
     {
         return $form->schema([

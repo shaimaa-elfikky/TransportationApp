@@ -1,5 +1,7 @@
-/* resources/css/filament/app/theme.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+@import '../../../../vendor/filament/filament/resources/css/base.css';
 
-/* Corrected import path for Filament's base styles */
-/* This path assumes you are in resources/css/filament/app/ and need to go up to the project root, then into vendor */
-@import '../../../../vendor/filament/filament/resources/css/app.css';
+@config 'tailwind.config.js';
