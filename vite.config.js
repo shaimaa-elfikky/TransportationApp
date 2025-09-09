@@ -5,9 +5,9 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css', // Your main Tailwind entry point
+                'resources/css/app.css', 
                 'resources/js/app.js',
-                'resources/css/filament/app/theme.css', // Your custom Filament theme
+                'resources/css/filament/app/theme.css',
             ],
             refresh: true,
         }),
