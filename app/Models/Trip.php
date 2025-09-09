@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Enums\TripStatus;
+use App\Traits\BelongsToCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Trip extends Model
 {
-    use HasFactory;
+    use HasFactory , BelongsToCompany;
 
     protected $fillable = [
         'company_id',
@@ -20,6 +22,10 @@ class Trip extends Model
         'start_time',
         'end_time',
         'status',
+    ];
+
+    protected $casts = [
+        'status' => TripStatus::class,
     ];
 
     public function company()

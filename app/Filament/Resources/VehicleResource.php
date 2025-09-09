@@ -16,7 +16,6 @@ class VehicleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-truck';
 
-
     public static function getNavigationGroup(): string
     {
 
