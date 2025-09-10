@@ -19,7 +19,7 @@ class CompanyScope implements Scope
             $user = Auth::user();
 
             if ($user->company_id) {
-                $builder->where($model->getTable() . '.company_id', $user->company_id);
+                $builder->where($model->getTable().'.company_id', $user->company_id);
             }
         }
     }

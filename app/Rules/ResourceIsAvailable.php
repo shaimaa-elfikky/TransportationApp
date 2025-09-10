@@ -2,25 +2,20 @@
 
 namespace App\Rules;
 
-use Closure;
 use App\Models\Driver;
 use App\Models\Vehicle;
-use Illuminate\Contracts\Validation\ValidationRule;
+use Closure;
 use Illuminate\Contracts\Validation\DataAwareRule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class ResourceIsAvailable implements ValidationRule, DataAwareRule
+class ResourceIsAvailable implements DataAwareRule, ValidationRule
 {
-   
     protected array $data = [];
 
     protected ?int $tripIdToIgnore = null;
 
+    public function __construct(protected string $resourceType) {}
 
-    public function __construct(protected string $resourceType)
-    {
-    }
-
-  
     public function setData(array $data): static
     {
         $this->data = $data;
@@ -32,14 +27,13 @@ class ResourceIsAvailable implements ValidationRule, DataAwareRule
         return $this;
     }
 
-
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $startTime = $this->data['start_time'] ?? null;
         $endTime = $this->data['end_time'] ?? null;
         $resourceId = $value;
 
-        if (!$startTime || !$endTime || !$resourceId) {
+        if (! $startTime || ! $endTime || ! $resourceId) {
             return;
         }
 
@@ -49,11 +43,11 @@ class ResourceIsAvailable implements ValidationRule, DataAwareRule
             default => null,
         };
 
-        if (!$model) {
-            return; 
+        if (! $model) {
+            return;
         }
 
-        if (!$model->isAvailable($startTime, $endTime, $this->tripIdToIgnore)) {
+        if (! $model->isAvailable($startTime, $endTime, $this->tripIdToIgnore)) {
             $fail("The selected {$this->resourceType} is not available for the chosen time frame.");
         }
     }

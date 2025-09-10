@@ -12,7 +12,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements FilamentUser, HasName
 {
-     use HasFactory;
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'email',
@@ -20,10 +21,8 @@ class User extends Authenticatable implements FilamentUser, HasName
     ];
 
     protected $hidden = ['password'];
-    
 
-
-    protected $casts = ['password' => 'hashed','role' => UserRole::class];
+    protected $casts = ['password' => 'hashed', 'role' => UserRole::class];
 
     public function canAccessPanel(Panel $panel): bool
     {

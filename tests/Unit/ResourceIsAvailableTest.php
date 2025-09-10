@@ -2,12 +2,12 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
-use App\Rules\ResourceIsAvailable;
 use App\Models\Driver;
 use App\Models\Vehicle;
-use Illuminate\Support\Facades\Validator;
+use App\Rules\ResourceIsAvailable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Validator;
+use Tests\TestCase;
 
 class ResourceIsAvailableTest extends TestCase
 {

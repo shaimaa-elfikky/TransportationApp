@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-             $table->integer('company_id');
-             $table->tinyInteger('role')->default(0);
+            $table->integer('company_id');
+            $table->tinyInteger('role')->default(0);
         });
     }
 

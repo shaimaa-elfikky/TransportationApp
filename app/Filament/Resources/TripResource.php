@@ -2,24 +2,16 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\TripStatus;
 use App\Filament\Forms\TripForm;
 use App\Filament\Resources\TripResource\Pages;
 use App\Models\Trip;
-use Filament\Forms;
-use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Livewire\Component as Livewire;
 
 class TripResource extends Resource
 {
@@ -35,7 +27,6 @@ class TripResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-
     public static function form(Form $form): Form
     {
         return $form->schema(TripForm::getSchema());
@@ -50,21 +41,17 @@ class TripResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-
                 TextColumn::make('vehicle.make')
                     ->label('Vehicle')
                     ->searchable()
                     ->sortable(),
 
-
                 TextColumn::make('start_time')
                     ->dateTime()
                     ->sortable(),
 
-
                 TextColumn::make('destination')
                     ->searchable(),
-
 
                 BadgeColumn::make('status')
                     ->getStateUsing(fn ($record) => $record->status)

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
-    use HasFactory ,BelongsToCompany;
+    use BelongsToCompany ,HasFactory;
 
     protected $fillable = [
         'company_id',
@@ -37,7 +37,7 @@ class Vehicle extends Model
                     $query->where('id', '!=', $exceptTripId);
                 }
             })
-            ->overlapping($startTime, $endTime) 
+            ->overlapping($startTime, $endTime)
             ->doesntExist();
     }
 }

@@ -5,16 +5,19 @@ namespace App\Filament\Widgets;
 use App\Enums\TripStatus;
 use App\Models\Trip;
 use Filament\Widgets\ChartWidget;
+use Livewire\Attributes\Computed;
 
 class TripStatusBreakdownChart extends ChartWidget
 {
     protected static ?string $heading = 'Current Trip Statuses';
+
     protected static ?string $maxHeight = '300px';
 
+    #[Computed(cache: true, seconds: 60)]
     protected function getData(): array
     {
         $scheduledCount = Trip::query()->where('status', TripStatus::Scheduled)->count();
-        $startedCount = Trip::query()->where('status', TripStatus::Started)->count(); 
+        $startedCount = Trip::query()->where('status', TripStatus::Started)->count();
 
         return [
             'datasets' => [

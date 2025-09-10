@@ -10,19 +10,17 @@ use Filament\Pages\Dashboard as BasePage;
 
 class Dashboard extends BasePage
 {
-  
     public function getWidgets(): array
     {
         return [
-                CompletedTripsChart::class,
-                TripStatusBreakdownChart::class,
-                DriverAvailabilityChart::class,
-                VehicleAvailabilityChart::class,
+            CompletedTripsChart::class,
+            TripStatusBreakdownChart::class,
+            DriverAvailabilityChart::class,
+            VehicleAvailabilityChart::class,
         ];
     }
 
-  
-    public function getHeaderWidgetsColumns(): int | string | array
+    public function getHeaderWidgetsColumns(): int|string|array
     {
         return 4;
     }

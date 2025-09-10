@@ -5,7 +5,7 @@ namespace App\Enums;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 
-enum TripStatus: int implements HasLabel, HasColor
+enum TripStatus: int implements HasColor, HasLabel
 {
     case Scheduled = 0;
     case Started = 1;

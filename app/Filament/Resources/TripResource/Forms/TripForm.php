@@ -11,7 +11,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Get;
 use Illuminate\Database\Eloquent\Builder;
-use Livewire\Component as Livewire;
 
 class TripForm
 {
@@ -32,13 +31,13 @@ class TripForm
                 ->label('scheduled start at')
                 ->required()
                 ->live()
-                ->disabled(fn(Get $get) => !$get('origin') || !$get('destination')),
+                ->disabled(fn (Get $get) => ! $get('origin') || ! $get('destination')),
 
             DateTimePicker::make('end_time')
                 ->label('scheduled end at')
                 ->required()
                 ->live()
-                ->disabled(fn(Get $get) => !$get('start_time'))
+                ->disabled(fn (Get $get) => ! $get('start_time'))
                 ->afterOrEqual('start_time'),
 
             Select::make('vehicle_id')
@@ -48,7 +47,7 @@ class TripForm
                     $endTime = $get('end_time');
                     $tripIdBeingEdited = $livewire->record?->id;
 
-                    if (!$startTime || !$endTime) {
+                    if (! $startTime || ! $endTime) {
                         return Vehicle::query()->limit(0)->pluck('make', 'id');
                     }
 
@@ -57,14 +56,14 @@ class TripForm
                             $query
                                 ->where('start_time', '<', $endTime)
                                 ->where('end_time', '>', $startTime)
-                                ->when($tripIdBeingEdited, fn($q) => $q->where('id', '!=', $tripIdBeingEdited));
+                                ->when($tripIdBeingEdited, fn ($q) => $q->where('id', '!=', $tripIdBeingEdited));
                         })
                         ->pluck('make', 'id');
                 })
                 ->searchable()
                 ->preload()
                 ->required()
-                ->disabled(fn(Get $get) => !$get('start_time') || !$get('end_time'))
+                ->disabled(fn (Get $get) => ! $get('start_time') || ! $get('end_time'))
                 ->rules([new ResourceIsAvailable('vehicle')]),
 
             Select::make('driver_id')
@@ -74,7 +73,7 @@ class TripForm
                     $endTime = $get('end_time');
                     $tripIdBeingEdited = $livewire->record?->id;
 
-                    if (!$startTime || !$endTime) {
+                    if (! $startTime || ! $endTime) {
                         return Driver::query()->limit(0)->pluck('name', 'id');
                     }
 
@@ -83,20 +82,20 @@ class TripForm
                             $query
                                 ->where('start_time', '<', $endTime)
                                 ->where('end_time', '>', $startTime)
-                                ->when($tripIdBeingEdited, fn($q) => $q->where('id', '!=', $tripIdBeingEdited));
+                                ->when($tripIdBeingEdited, fn ($q) => $q->where('id', '!=', $tripIdBeingEdited));
                         })
                         ->pluck('name', 'id');
                 })
                 ->searchable()
                 ->preload()
                 ->required()
-                ->disabled(fn(Get $get) => !$get('start_time') || !$get('end_time'))
+                ->disabled(fn (Get $get) => ! $get('start_time') || ! $get('end_time'))
                 ->rules([new ResourceIsAvailable('driver')]),
 
             Select::make('status')
                 ->options(TripStatus::class)
                 ->required()
-                ->default(TripStatus::Scheduled)
+                ->default(TripStatus::Scheduled),
         ];
     }
 }

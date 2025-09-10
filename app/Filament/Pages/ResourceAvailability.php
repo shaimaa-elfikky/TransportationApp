@@ -9,17 +9,16 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
-use Livewire\Attributes\Computed;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Computed;
 
 class ResourceAvailability extends Page implements HasForms
 {
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-sparkles';
+
     protected static string $view = 'filament.pages.resource-availability';
-
-
 
     public ?array $data = [];
 
@@ -27,6 +26,7 @@ class ResourceAvailability extends Page implements HasForms
     {
         $this->form->fill();
     }
+
     public function form(Form $form): Form
     {
         return $form
@@ -63,7 +63,6 @@ class ResourceAvailability extends Page implements HasForms
             })
             ->orderBy('name')
             ->get();
-
 
         $availableVehicles = Vehicle::query()
             ->whereDoesntHave('trips', function (Builder $query) use ($startTime, $endTime) {

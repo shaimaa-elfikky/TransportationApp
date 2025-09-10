@@ -6,24 +6,25 @@ use App\Enums\TripStatus;
 use App\Models\Trip;
 use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
+use Livewire\Attributes\Computed;
 
 class CompletedTripsChart extends ChartWidget
 {
     protected static ?string $heading = 'Completed Trips Over Time';
+
     protected static ?string $maxHeight = '300px';
 
+    #[Computed(cache: true, seconds: 60)]
     protected function getData(): array
     {
         $data = [];
         $labels = [];
 
-     
         for ($i = 5; $i >= 0; $i--) {
             $date = Carbon::now()->subMonths($i);
-            $month = $date->format('M'); 
+            $month = $date->format('M');
             $year = $date->format('Y');
 
-          
             $count = Trip::query()
                 ->where('status', TripStatus::Completed)
                 ->whereMonth('updated_at', $date->month)

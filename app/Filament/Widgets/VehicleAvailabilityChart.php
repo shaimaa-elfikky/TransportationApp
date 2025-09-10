@@ -6,43 +6,44 @@ use App\Enums\TripStatus;
 use App\Models\Vehicle;
 use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
+use Livewire\Attributes\Computed;
 
 class VehicleAvailabilityChart extends ChartWidget
 {
     protected static ?string $heading = 'Vehicle Availability';
+
     protected static ?string $maxHeight = '300px';
+
     protected static ?string $emptyStateMessage = 'No vehicle data to display.';
 
+    #[Computed(cache: true, seconds: 60)]
     protected function getData(): array
     {
         $totalVehicles = Vehicle::query()->count();
-        if ($totalVehicles === 0) {
-            return []; 
+        $now = Carbon::now();
+
+        $availableVehicles = 0;
+        if ($totalVehicles > 0) {
+            $availableVehicles = Vehicle::query()
+                ->whereDoesntHave('trips', function ($query) use ($now) {
+                    $query
+                        ->where('start_time', '<=', $now)
+                        ->where('end_time', '>=', $now)
+                        ->whereIn('status', [TripStatus::Scheduled, TripStatus::Started]);
+                })
+                ->count();
         }
 
-        $now = Carbon::now();
-        
-  
-        $availableVehicles = Vehicle::query()
-            ->whereDoesntHave('trips', function ($query) use ($now) {
-                $query
-                    ->where('start_time', '<=', $now)
-                    ->where('end_time', '>=', $now)
-                    ->whereIn('status', [TripStatus::Scheduled, TripStatus::Started]);
-            })
-            ->count();
-        
-
-        $vehiclesOnTrip = $totalVehicles - $availableVehicles;
+        $vehiclesOnTrip = max(0, $totalVehicles - $availableVehicles);
 
         return [
             'datasets' => [
                 [
                     'label' => 'Vehicles',
-                    'data' => [$availableVehicles, $vehiclesOnTrip],
+                    'data' => [max(0, $availableVehicles), max(0, $vehiclesOnTrip)],
                     'backgroundColor' => [
-                        'rgba(34, 197, 94, 0.7)',  
-                        'rgba(245, 158, 11, 0.7)', 
+                        'rgba(34, 197, 94, 0.7)',
+                        'rgba(245, 158, 11, 0.7)',
                     ],
                 ],
             ],
@@ -52,6 +53,6 @@ class VehicleAvailabilityChart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'donut';
+        return 'doughnut';
     }
 }
