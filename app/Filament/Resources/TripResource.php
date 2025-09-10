@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Forms\TripForm;
+use App\Filament\Resources\TripResource\Forms\TripForm;
 use App\Filament\Resources\TripResource\Pages;
 use App\Models\Trip;
 use Filament\Forms\Form;

@@ -8,7 +8,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // This teaches Tailwind to use the CSS variables from your app.css file
       colors: {
         primary: {
           50: "rgb(var(--primary-50) / <alpha-value>)",

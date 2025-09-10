@@ -64,14 +64,7 @@
     @apply bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-md;
   }
 
-  /*
-   * =================================================================
-   *  ELEGANT BUTTON STYLES (NO !important NEEDED)
-   *
-   *  This single, powerful rule targets all primary action buttons
-   *  across Filament and applies your custom theme.
-   * =================================================================
-   */
+  /* Buttons */
   .fi-btn:not(.fi-btn-outline),
   .fi-ac-btn-action:not(.fi-ac-btn-outline),
   .fi-ac-action .fi-ac-btn-action,

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Forms;
+namespace App\Filament\Resources\TripResource\Forms;
 
 use App\Enums\TripStatus;
 use App\Models\Driver;

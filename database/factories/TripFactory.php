@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Company;
 use App\Models\Driver;
 use App\Models\Vehicle;
+use App\Enums\TripStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -32,12 +33,7 @@ class TripFactory extends Factory
             'destination' => $this->faker->city().', '.$this->faker->countryCode(),
             'start_time' => $start,
             'end_time' => $end,
-            'status' => $this->faker->randomElement([
-                'scheduled',
-                'ongoing',
-                'completed',
-                'cancelled',
-            ]),
+           'status' => $this->faker->randomElement(TripStatus::cases())->value,
         ];
     }
 
@@ -50,7 +46,7 @@ class TripFactory extends Factory
             return [
                 'start_time' => $start,
                 'end_time' => $end,
-                'status' => 'scheduled',
+                'status' => TripStatus::Scheduled,
             ];
         });
     }
@@ -64,7 +60,7 @@ class TripFactory extends Factory
             return [
                 'start_time' => $start,
                 'end_time' => $end,
-                'status' => 'ongoing',
+                'status' => TripStatus::Started,
             ];
         });
     }
@@ -78,7 +74,7 @@ class TripFactory extends Factory
             return [
                 'start_time' => $start,
                 'end_time' => $end,
-                'status' => 'completed',
+                'status' => TripStatus::Completed,
             ];
         });
     }

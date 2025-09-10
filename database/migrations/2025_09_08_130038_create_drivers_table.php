@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('company_id');
             $table->string('name');
-            $table->string('name');
             $table->string('license_number')->unique();
             $table->string('phone')->nullable();
             $table->string('email')->unique()->nullable();
