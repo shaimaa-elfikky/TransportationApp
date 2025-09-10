@@ -63,8 +63,7 @@ class DriverResource extends Resource
                 Tables\Columns\TextColumn::make('company.name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('first_name')->searchable(),
-                Tables\Columns\TextColumn::make('last_name')->searchable(),
+                Tables\Columns\TextColumn::make('name')->searchable(),
                 Tables\Columns\TextColumn::make('license_number')->searchable(),
                 Tables\Columns\TextColumn::make('phone')->searchable(),
                 Tables\Columns\TextColumn::make('email')->searchable(),

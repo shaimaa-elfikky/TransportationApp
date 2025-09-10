@@ -569,6 +569,32 @@ button, a[role="button"], [role="button"] {
     border-color: rgb(var(--danger-500));
 }
 
+/* Error Message Styling - High Specificity */
+.fi-fo-field-wrp-error-message,
+.filament-forms-field-wrapper-error-message,
+[data-field-wrapper] .fi-fo-field-wrp-error-message {
+    color: #dc2626 !important; /* Bright red */
+}
+
+.dark .fi-fo-field-wrp-error-message,
+.dark .filament-forms-field-wrapper-error-message,
+.dark [data-field-wrapper] .fi-fo-field-wrp-error-message {
+    color: #f87171 !important; /* Lighter red for dark mode */
+}
+
+/* Force red color on all error message elements */
+p.fi-fo-field-wrp-error-message,
+span.fi-fo-field-wrp-error-message,
+div.fi-fo-field-wrp-error-message {
+    color: #dc2626 !important;
+}
+
+.dark p.fi-fo-field-wrp-error-message,
+.dark span.fi-fo-field-wrp-error-message,
+.dark div.fi-fo-field-wrp-error-message {
+    color: #f87171 !important;
+}
+
 .fi-label {
     color: rgb(var(--primary-700));
     font-weight: 500;
@@ -729,16 +755,8 @@ button, a[role="button"], [role="button"] {
 
 /* Loading States */
 .fi-loading {
-    background: linear-gradient(90deg, rgb(var(--primary-100)) 25%, rgb(var(--primary-200)) 50%, rgb(var(--primary-100)) 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    background: transparent !important;
+    animation: none !important;
 }
 
-@keyframes loading {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
-    }
-}
+

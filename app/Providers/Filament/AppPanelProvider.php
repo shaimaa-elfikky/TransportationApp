@@ -55,7 +55,7 @@ class AppPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->viteTheme('resources/css/app.css');
+            ->viteTheme('resources/css/filament/app/theme.css');
 
     }
 }
