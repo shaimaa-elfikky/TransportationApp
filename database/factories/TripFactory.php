@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Enums\TripStatus;
 use App\Models\Company;
 use App\Models\Driver;
 use App\Models\Vehicle;
-use App\Enums\TripStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -33,7 +33,7 @@ class TripFactory extends Factory
             'destination' => $this->faker->city().', '.$this->faker->countryCode(),
             'start_time' => $start,
             'end_time' => $end,
-           'status' => $this->faker->randomElement(TripStatus::cases())->value,
+            'status' => $this->faker->randomElement(TripStatus::cases())->value,
         ];
     }
 

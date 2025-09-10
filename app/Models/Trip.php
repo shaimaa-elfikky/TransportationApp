@@ -45,10 +45,10 @@ class Trip extends Model
 
     public function scopeActive($query)
     {
-        return $query->whereIn('status', [        
+        return $query->whereIn('status', [
             TripStatus::Scheduled->value,
             TripStatus::Started->value,
-    ]);
+        ]);
     }
 
     public function scopeOverlapping($query, string $startTime, string $endTime)

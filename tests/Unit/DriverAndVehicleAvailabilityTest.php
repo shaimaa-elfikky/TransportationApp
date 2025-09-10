@@ -1,10 +1,10 @@
 <?php
 
+use App\Enums\TripStatus;
 use App\Models\Driver;
 use App\Models\Trip;
 use App\Models\Vehicle;
 use App\Rules\ResourceIsAvailable;
-use App\Enums\TripStatus;
 use Illuminate\Support\Facades\Validator;
 
 it('driver is available when no overlapping trips', function () {
@@ -111,7 +111,7 @@ it('validation rule fails when resource is not available', function () {
 
     // First, let's test the isAvailable method directly to confirm model logic
     $isAvailable = $driver->isAvailable($checkStart, $checkEnd);
-    expect($isAvailable)->toBeFalse("Driver should not be available for overlapping time");
+    expect($isAvailable)->toBeFalse('Driver should not be available for overlapping time');
 
     // Test the validation rule by simulating request data
     $validator = Validator::make([

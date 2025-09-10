@@ -45,6 +45,6 @@ class User extends Authenticatable implements FilamentUser, HasName
 
     public function getName(): string
     {
-        return $this->name;     
+        return $this->name;
     }
 }
