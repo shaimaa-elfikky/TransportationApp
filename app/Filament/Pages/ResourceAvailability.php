@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Models\Driver;
 use App\Models\Vehicle;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
@@ -31,13 +32,16 @@ class ResourceAvailability extends Page implements HasForms
     {
         return $form
             ->schema([
-                DateTimePicker::make('startTime')
-                    ->label('Period Start Time')
-                    ->required(),
-                DateTimePicker::make('endTime')
-                    ->label('Period End Time')
-                    ->required()
-                    ->afterOrEqual('startTime'),
+                Grid::make(2)->schema([
+                    DateTimePicker::make('startTime')
+                        ->label('Period Start Time')
+                        ->required(),
+
+                    DateTimePicker::make('endTime')
+                        ->label('Period End Time')
+                        ->required()
+                        ->afterOrEqual('startTime'),
+                ]),
             ])
             ->statePath('data');
     }
