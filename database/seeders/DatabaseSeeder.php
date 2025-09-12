@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $companies = Company::factory(3)->create();
-
+        
+        // Create Admin User
         $admin = User::where('email', 'admin@admin.com')->first();
         if (! $admin) {
             $admin = User::factory()->create([
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         }
         $admin->assignRole('admin');
 
+        // Create Manager User
         $manager = User::where('email', 'manager@manager.com')->first();
         if (! $manager) {
             $manager = User::factory()->create([
@@ -40,6 +42,18 @@ class DatabaseSeeder extends Seeder
             ]);
         }
         $manager->assignRole('manager');
+
+        // Create Driver User
+        $driverUser = User::where('email', 'driver@driver.com')->first();
+        if (! $driverUser) {
+            $driverUser = User::factory()->create([
+                'name' => 'Driver User',
+                'email' => 'driver@driver.com',
+                'password' => Hash::make('12345678'),
+                'company_id' => $companies->first()->id,
+            ]);
+        }
+        $driverUser->assignRole('driver');
 
         foreach ($companies as $company) {
             // Create 10 drivers per company
