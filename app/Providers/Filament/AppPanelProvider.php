@@ -2,7 +2,11 @@
 
 namespace App\Providers\Filament;
 
-use Filament\FontProviders\GoogleFontProvider;
+use App\Filament\Widgets\CompletedTripsChart;
+use App\Filament\Widgets\DriverAvailabilityChart;
+use App\Filament\Widgets\TripStatusBreakdownChart;
+use App\Filament\Widgets\VehicleAvailabilityChart;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -10,8 +14,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -29,19 +31,9 @@ class AppPanelProvider extends PanelProvider
             ->path('app')
             ->authGuard('web')
             ->login()
-            ->colors([
-                'danger' => '#CC0000',
-                'gray' => '#A9A9A9',
-                'info' => '#A7C7E7',
-                'primary' => '#216CB9',
-                'secondary' => '#FAF461',
-                'success' => '#50C878',
-                'warning' => '#FFAC1C',
-            ])
             ->brandName('TransportationApp')
             ->brandLogo(asset('images/logo.png'))
             ->favicon(asset('images/favicon.png'))
-            ->font('Changa', provider: GoogleFontProvider::class)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -49,8 +41,11 @@ class AppPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                CompletedTripsChart::class,
+                TripStatusBreakdownChart::class,
+                DriverAvailabilityChart::class,
+                VehicleAvailabilityChart::class,
+
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -63,8 +58,13 @@ class AppPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->plugins([
+                FilamentShieldPlugin::make(),
+            ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/app/theme.css');
+
     }
 }

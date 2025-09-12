@@ -6,9 +6,9 @@ use App\Models\Company;
 use App\Models\Driver;
 use App\Models\Trip;
 use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Vehicle;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,17 +17,43 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
-
-        if (!User::where('email', 'admin@example.com')->exists()) {
-            User::factory()->create([
+        $companies = Company::factory(3)->create();
+        
+        // Create Admin User
+        $admin = User::where('email', 'admin@admin.com')->first();
+        if (! $admin) {
+            $admin = User::factory()->create([
                 'name' => 'Admin User',
-                'email' => 'admin@example.com',
-                'password' => Hash::make('password'),
+                'email' => 'admin@admin.com',
+                'password' => Hash::make('12345678'),
+                'company_id' => $companies->first()->id,
             ]);
         }
+        $admin->assignRole('admin');
 
-        $companies = Company::factory(3)->create();
+        // Create Manager User
+        $manager = User::where('email', 'manager@manager.com')->first();
+        if (! $manager) {
+            $manager = User::factory()->create([
+                'name' => 'Manager User',
+                'email' => 'manager@manager.com',
+                'password' => Hash::make('12345678'),
+                'company_id' => $companies->first()->id,
+            ]);
+        }
+        $manager->assignRole('manager');
+
+        // Create Driver User
+        $driverUser = User::where('email', 'driver@driver.com')->first();
+        if (! $driverUser) {
+            $driverUser = User::factory()->create([
+                'name' => 'Driver User',
+                'email' => 'driver@driver.com',
+                'password' => Hash::make('12345678'),
+                'company_id' => $companies->first()->id,
+            ]);
+        }
+        $driverUser->assignRole('driver');
 
         foreach ($companies as $company) {
             // Create 10 drivers per company
@@ -44,7 +70,7 @@ class DatabaseSeeder extends Seeder
             Trip::factory(50)
                 ->for($company)
                 ->sequence(
-                    fn($sequence) => [
+                    fn ($sequence) => [
                         'driver_id' => $drivers->random()->id,
                         'vehicle_id' => $vehicles->random()->id,
                     ],
@@ -56,7 +82,7 @@ class DatabaseSeeder extends Seeder
                 ->for($company)
                 ->ongoing()
                 ->sequence(
-                    fn($sequence) => [
+                    fn ($sequence) => [
                         'driver_id' => $drivers->random()->id,
                         'vehicle_id' => $vehicles->random()->id,
                     ],
@@ -68,7 +94,7 @@ class DatabaseSeeder extends Seeder
                 ->for($company)
                 ->scheduled()
                 ->sequence(
-                    fn($sequence) => [
+                    fn ($sequence) => [
                         'driver_id' => $drivers->random()->id,
                         'vehicle_id' => $vehicles->random()->id,
                     ],
@@ -80,7 +106,7 @@ class DatabaseSeeder extends Seeder
                 ->for($company)
                 ->completed()
                 ->sequence(
-                    fn($sequence) => [
+                    fn ($sequence) => [
                         'driver_id' => $drivers->random()->id,
                         'vehicle_id' => $vehicles->random()->id,
                     ],
@@ -89,5 +115,3 @@ class DatabaseSeeder extends Seeder
         }
     }
 }
-
-

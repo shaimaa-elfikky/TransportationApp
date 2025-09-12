@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\VehicleResource\Pages;
+use App\Filament\Resources\VehicleResource\Pages\CreateVehicle;
+use App\Filament\Resources\VehicleResource\Pages\EditVehicle;
+use App\Filament\Resources\VehicleResource\Pages\ListVehicles;
 use App\Models\Vehicle;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -15,6 +17,14 @@ class VehicleResource extends Resource
     protected static ?string $model = Vehicle::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-truck';
+
+    public static function getNavigationGroup(): string
+    {
+
+        return __('Vehicles Mangements');
+    }
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
@@ -108,9 +118,9 @@ class VehicleResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListVehicles::route('/'),
-            'create' => Pages\CreateVehicle::route('/create'),
-            'edit' => Pages\EditVehicle::route('/{record}/edit'),
+            'index' => ListVehicles::route('/'),
+            'create' => CreateVehicle::route('/create'),
+            'edit' => EditVehicle::route('/{record}/edit'),
         ];
     }
 }

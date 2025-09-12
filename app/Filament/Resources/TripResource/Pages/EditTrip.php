@@ -23,7 +23,7 @@ class EditTrip extends EditRecord
         $vehicle = \App\Models\Vehicle::find($data['vehicle_id']);
 
         if (
-            !$driver->isAvailable(
+            ! $driver->isAvailable(
                 $data['start_time'],
                 $data['end_time'],
                 $this->record->id,
@@ -38,7 +38,7 @@ class EditTrip extends EditRecord
         }
 
         if (
-            !$vehicle->isAvailable(
+            ! $vehicle->isAvailable(
                 $data['start_time'],
                 $data['end_time'],
                 $this->record->id,

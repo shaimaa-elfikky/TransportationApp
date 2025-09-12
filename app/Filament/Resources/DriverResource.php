@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DriverResource\Pages;
+use App\Filament\Resources\DriverResource\Pages\CreateDriver;
+use App\Filament\Resources\DriverResource\Pages\EditDriver;
+use App\Filament\Resources\DriverResource\Pages\ListDrivers;
 use App\Models\Driver;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -16,6 +18,14 @@ class DriverResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
 
+    public static function getNavigationGroup(): string
+    {
+
+        return __('Drivers Mangements');
+    }
+
+    protected static ?int $navigationSort = 1;
+
     public static function form(Form $form): Form
     {
         return $form->schema([
@@ -26,10 +36,7 @@ class DriverResource extends Resource
                         ->required()
                         ->searchable()
                         ->preload(),
-                    Forms\Components\TextInput::make('first_name')
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\TextInput::make('last_name')
+                    Forms\Components\TextInput::make('name')
                         ->required()
                         ->maxLength(255),
                     Forms\Components\TextInput::make('license_number')
@@ -55,8 +62,7 @@ class DriverResource extends Resource
                 Tables\Columns\TextColumn::make('company.name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('first_name')->searchable(),
-                Tables\Columns\TextColumn::make('last_name')->searchable(),
+                Tables\Columns\TextColumn::make('name')->searchable(),
                 Tables\Columns\TextColumn::make('license_number')->searchable(),
                 Tables\Columns\TextColumn::make('phone')->searchable(),
                 Tables\Columns\TextColumn::make('email')->searchable(),
@@ -90,9 +96,9 @@ class DriverResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDrivers::route('/'),
-            'create' => Pages\CreateDriver::route('/create'),
-            'edit' => Pages\EditDriver::route('/{record}/edit'),
+            'index' => ListDrivers::route('/'),
+            'create' => CreateDriver::route('/create'),
+            'edit' => EditDriver::route('/{record}/edit'),
         ];
     }
 }

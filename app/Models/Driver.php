@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Driver extends Model
 {
-    use HasFactory;
+    use BelongsToCompany ,HasFactory;
 
     protected $fillable = [
         'company_id',
-        'first_name',
-        'last_name',
+        'name',
         'license_number',
         'phone',
         'email',
@@ -26,5 +26,17 @@ class Driver extends Model
     public function trips()
     {
         return $this->hasMany(Trip::class);
+    }
+
+    public function isAvailable(string $startTime, string $endTime, ?int $exceptTripId = null): bool
+    {
+        return $this->trips()
+            ->where(function ($query) use ($exceptTripId) {
+                if ($exceptTripId) {
+                    $query->where('id', '!=', $exceptTripId);
+                }
+            })
+            ->overlapping($startTime, $endTime)
+            ->doesntExist();
     }
 }

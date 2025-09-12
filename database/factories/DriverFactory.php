@@ -19,8 +19,7 @@ class DriverFactory extends Factory
     {
         return [
             'company_id' => Company::factory(),
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
+            'name' => $this->faker->name(),
             'license_number' => $this->faker->unique()->bothify('??######'),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
