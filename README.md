@@ -29,33 +29,18 @@ Follow these steps to set up and run the TransportationApp:
    ```
 6. **Run Database Migrations**:
    ```bash
-   php artisan migrate
+   php artisan migrate --seed
    ```
 
-7. **Seed Database (Admin user + roles/permissions)**:
-   ```bash
-   php artisan db:seed
-   ```
 8. **Clear caches**:
    ```bash
    php artisan optimize:clear
-   php artisan filament:optimize-clear
-   ```
-
-9. **Generate Filament Shield Permissions**:
-   ```bash
-   php artisan shield:generate --all
    ```
 
 ###  Frontend
    This project uses **Vite** with **Tailwind CSS v3** for styling.  
    You don’t need to install Tailwind globally — it’s already included in `package.json`.  
 
-   If you need to re-install or update Tailwind, run:
-   ```bash
-   npm install -D tailwindcss postcss autoprefixer
-   npx tailwindcss init -p
-  ```
 
 ###  Default Admin & Roles
 
