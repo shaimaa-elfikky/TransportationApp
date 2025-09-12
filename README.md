@@ -104,15 +104,9 @@ Follow these steps to set up and run the TransportationApp:
    ```bash
    # Run all tests
    php artisan test
-
-   # Run tests with coverage
-   php artisan test --coverage
-
-   # Run specific test files
-   php artisan test --filter="driver availability"
    ```
 
-**Test Coverage**: The application includes comprehensive tests for trip overlapping detection, resource availability validation
+**Test Coverage**: The application includes comprehensive tests for trip overlapping detection, resource availability validation, and form conflict prevention to ensure reliable scheduling operations.
 
 
 
