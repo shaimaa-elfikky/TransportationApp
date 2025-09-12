@@ -35,6 +35,15 @@ Follow these steps to set up and run the TransportationApp:
    ```bash
    npm run dev
    ```
+###  Frontend
+   This project uses **Vite** with **Tailwind CSS v3** for styling.  
+   You don’t need to install Tailwind globally — it’s already included in `package.json`.  
+
+   If you need to re-install or update Tailwind, run:
+   ```bash
+   npm install -D tailwindcss postcss autoprefixer
+   npx tailwindcss init -p
+   ```
 
 
 
