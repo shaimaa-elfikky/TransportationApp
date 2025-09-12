@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-
 use App\Models\Company;
 use App\Models\Driver;
 use App\Models\Trip;
@@ -13,15 +12,15 @@ use App\Policies\DriverPolicy;
 use App\Policies\TripPolicy;
 use App\Policies\UserPolicy;
 use App\Policies\VehiclePolicy;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
      */
-      protected $policies = [
+    protected $policies = [
         //  \Spatie\Permission\Models\Role::class => \App\Policies\RolePolicy::class,
         // \Spatie\Permission\Models\Permission::class => \App\Policies\PermissionPolicy::class,
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
@@ -40,6 +39,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::before(function (User $user, string $ability) {
             return $user->hasRole('admin') ? true : null;
         });
-        
+
     }
 }

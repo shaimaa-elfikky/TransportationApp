@@ -3,10 +3,10 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Widgets\CompletedTripsChart;
-use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use App\Filament\Widgets\DriverAvailabilityChart;
 use App\Filament\Widgets\TripStatusBreakdownChart;
 use App\Filament\Widgets\VehicleAvailabilityChart;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;

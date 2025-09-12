@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DriverResource\Pages;
 use App\Filament\Resources\DriverResource\Pages\CreateDriver;
 use App\Filament\Resources\DriverResource\Pages\EditDriver;
 use App\Filament\Resources\DriverResource\Pages\ListDrivers;

@@ -2,11 +2,6 @@
 
 Follow these steps to set up and run the TransportationApp:
 
-### Prerequisites
-1. Install [Composer](https://getcomposer.org/).
-2. Install [Node.js](https://nodejs.org/) and npm.
-3. Install [Laravel](https://laravel.com/) globally using Composer.
-
 ### Steps
 
 1. **Clone the Repository**:
@@ -24,5 +19,23 @@ Follow these steps to set up and run the TransportationApp:
    ```bash
    npm install
    ```
+4. **Set Up Environment File**:
+   ```bash
+   cp .env.example .env
+   ```
+5. **Generate Application Key**:
+   ```bash
+   php artisan key:generate
+   ```
+6. **Run Database Migrations**:
+   ```bash
+   php artisan migrate
+   ```
+7. **Build Frontend Assets**:
+   ```bash
+   npm run dev
+   ```
+
+
 
 

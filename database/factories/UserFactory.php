@@ -36,16 +36,15 @@ class UserFactory extends Factory
     public function admin(): static
     {
         return $this->state(fn (array $attributes) => [
-            'company_id' => null, 
+            'company_id' => null,
         ])->afterCreating(function (User $user) {
             $user->assignRole('admin');
         });
     }
 
-    
     public function manager(): static
     {
-         return $this->afterCreating(function (User $user) {
+        return $this->afterCreating(function (User $user) {
             $user->assignRole('manager');
         });
     }
@@ -55,7 +54,7 @@ class UserFactory extends Factory
      */
     public function driver(): static
     {
-         return $this->afterCreating(function (User $user) {
+        return $this->afterCreating(function (User $user) {
             $user->assignRole('driver');
         });
     }

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $companies = Company::factory(3)->create();
 
         $admin = User::where('email', 'admin@admin.com')->first();
-        if (!$admin) {
+        if (! $admin) {
             $admin = User::factory()->create([
                 'name' => 'Admin User',
                 'email' => 'admin@admin.com',
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         $admin->assignRole('admin');
 
         $manager = User::where('email', 'manager@manager.com')->first();
-        if (!$manager) {
+        if (! $manager) {
             $manager = User::factory()->create([
                 'name' => 'Manager User',
                 'email' => 'manager@manager.com',

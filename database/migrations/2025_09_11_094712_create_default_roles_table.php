@@ -5,16 +5,17 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
 
-       app()[PermissionRegistrar::class]->forgetCachedPermissions();
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $this->createAdminAndSyncPermissions();
         $this->createManagerAndSyncPermissions();
         $this->createDriverAndSyncPermissions();
-        
+
     }
 
     public function createAdminAndSyncPermissions(): void
@@ -26,7 +27,7 @@ return new class extends Migration {
 
     public function createManagerAndSyncPermissions(): void
     {
-         $role = self::roleModel()::firstOrCreate([
+        $role = self::roleModel()::firstOrCreate([
             'name' => 'Manager',
             'guard_name' => 'web',
         ]);
@@ -36,17 +37,17 @@ return new class extends Migration {
             ->whereIn('name', [
                 'page_ResourceAvailability',
                 // Dashboard Widgets
-                 'widget_CompletedTripsChart', 'widget_TripStatusBreakdownChart', 'widget_DriverAvailabilityChart', 'widget_VehicleAvailabilityChart',
+                'widget_CompletedTripsChart', 'widget_TripStatusBreakdownChart', 'widget_DriverAvailabilityChart', 'widget_VehicleAvailabilityChart',
 
                 'page_ReportsPage', 'page_POS',
 
                 // CompanyResource
-                'view_company', 'view_any_company', 'create_company', 'update_company',      
+                'view_company', 'view_any_company', 'create_company', 'update_company',
 
                 // DriverResource
-                'view_driver', 'view_any_driver', 'create_driver', 'update_driver','delete_driver', 'delete_any_driver',
+                'view_driver', 'view_any_driver', 'create_driver', 'update_driver', 'delete_driver', 'delete_any_driver',
 
-                //TripResource
+                // TripResource
                 'view_trip', 'view_any_trip', 'create_trip', 'update_trip', 'delete_trip', 'delete_any_trip',
 
                 // VehicleResource
@@ -55,7 +56,7 @@ return new class extends Migration {
             ->pluck('name');
 
         $role->syncPermissions($permissions);
-    }   
+    }
 
     public function createDriverAndSyncPermissions(): void
     {
@@ -65,8 +66,8 @@ return new class extends Migration {
             'view_any_trip',
         ])->get();
         $driverRole->syncPermissions($permissions);
-    }   
-    
+    }
+
     public function down(): void
     {
         Role::whereIn('name', ['admin', 'manager', 'driver'])->delete();

@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\VehicleResource\Pages;
 use App\Filament\Resources\VehicleResource\Pages\CreateVehicle;
 use App\Filament\Resources\VehicleResource\Pages\EditVehicle;
 use App\Filament\Resources\VehicleResource\Pages\ListVehicles;
@@ -26,7 +25,7 @@ class VehicleResource extends Resource
     }
 
     protected static ?int $navigationSort = 1;
-     
+
     public static function form(Form $form): Form
     {
         return $form->schema([
