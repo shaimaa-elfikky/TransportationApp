@@ -36,9 +36,15 @@ Follow these steps to set up and run the TransportationApp:
    ```bash
    php artisan db:seed
    ```
-8. **Generate Filament Shield Permissions**:
+8. **Clear caches**:
    ```bash
-   php artisan shield:generate
+   php artisan optimize:clear
+   php artisan filament:optimize-clear
+   ```
+
+9. **Generate Filament Shield Permissions**:
+   ```bash
+   php artisan shield:generate --all
    ```
 
 ###  Frontend
