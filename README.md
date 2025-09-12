@@ -44,7 +44,7 @@ Follow these steps to set up and run the TransportationApp:
 
 9. **Generate Filament Shield Permissions**:
    ```bash
-   php artisan shield:generate --all
+   php artisan shield:generate 
    ```
 
 ###  Frontend
